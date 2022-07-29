@@ -1,0 +1,62 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    width:100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+}
+
+button {
+    margin-right: 10px;
+    padding: 10px 8px;
+    background-color: rgb(10, 141, 97);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn--primary {
+    background: rgb(84, 126, 190);
+    color: #fff;
+}
+
+.btn--secondary {
+    background: rgb(96, 162, 167);
+    color: #fff;
+}
+
+.btn--tertiary {
+    background: rgb(117, 130, 148);
+    color: #fff;
+}
+
+.item_3 {
+    background-color: rgb(245, 239, 153);
+}
+
+.item_5 {
+    background-color: rgb(220, 203, 241);
+}
+
+.addItemWrapper {
+    margin-top: 30px;
+}
