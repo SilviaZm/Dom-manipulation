@@ -34,6 +34,10 @@ button {
     border-radius: 4px;
 }
 
+button.disabled {
+    background: #ddd;
+}
+
 .btn--primary {
     background: rgb(84, 126, 190);
     color: #fff;
