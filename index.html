@@ -9,56 +9,76 @@
 </head>
 <body>
     <div class="container">
-        <button class="btn--primary btnHide">Hide List</button>
-        <button class="btn--primary btnShow">Show List</button>
-        <ul class="list">
-            <li class="list__item item_1">
-                <div class="list__item__text">Item 1</div>
-                <div class="list__item__buttons">
-                    <button class="btn--secondary btnUp">Up</button>
-                    <button class="btn--primary btnDown">Down</button>
-                    <button class="btn--tertiary btnRemove">Remove</button>
+        <div class="container__hero">
+            <div class="hero__pic"></div>
+            <div class="hero">
+                <input type="text" class="hero__input" placeholder="Invite someone...">
+                <button class="button--secondary btnSubmit">Submit</button>
+            </div>
+           
+
+        </div>
+       
+        <div class="main">
+            <div class="main__header">
+                <div>
+                    <h3>Invitees</h3>
+                <button class="button--primary btnSort">Sort Cards</button>
                 </div>
-            </li>
-            <li class="list__item item_2">
-            <div class="list__item__text">Item 2</div>
-            <div class="list__item__buttons">
-                <button class="btn--secondary btnUp">Up</button>
-                <button class="btn--primary btnDown">Down</button>
-                <button class="btn--tertiary btnRemove">Remove</button>
+                
+                <div class="hide__wrapper">
+                    <p>Hide those who haven't responded</p>
+                    <input type="checkbox" class="checkboxHide">
+                </div>
             </div>
-            </li>
-            <li class="list__item item_3">
-            <div class="list__item__text">Item 3</div>
-            <div class="list__item__buttons">
-                <button class="btn--secondary btnUp">Up</button>
-                <button class="btn--primary btnDown">Down</button>
-                <button class="btn--tertiary btnRemove">Remove</button>
+            <div class="main__body">
+                <div class="main__card">
+                    <h3 class="main__card__title">Andu</h3>
+                    <div>
+                        <p>Confirmed</p>
+                        <input type="checkbox" class="checkboxCard">
+                    </div>
+                    <div>
+                        <button class="button--primary btnEdit">Edit</button>
+                        <button class="button--secondary btnRemove">Remove</button>
+                     </div>
+                </div>
+                <div class="main__card">
+                    <h3 class="main__card__title">Silvia</h3>
+                    <div>
+                        <p>Confirmed</p>
+                        <input type="checkbox" class="checkboxCard">
+                    </div>
+                    <div>
+                        <button class="button--primary btnEdit">Edit</button>
+                        <button class="button--secondary btnRemove">Remove</button>
+                     </div>
+                </div>
+                <div class="main__card">
+                    <h3 class="main__card__title">Andrei</h3>
+                    <div>
+                        <p>Confirmed</p>
+                        <input type="checkbox" class="checkboxCard">
+                    </div>
+                    <div>
+                        <button class="button--primary btnEdit">Edit</button>
+                        <button class="button--secondary btnRemove">Remove</button>
+                     </div>
+                </div>
+                <div class="main__card">
+                    <h3 class="main__card__title">Mihaela</h3>
+                    <div>
+                        <p>Confirmed</p>
+                        <input type="checkbox" class="checkboxCard">
+                    </div>
+                    <div>
+                        <button class="button--primary btnEdit">Edit</button>
+                        <button class="button--secondary btnRemove">Remove</button>
+                     </div>
+                </div>
             </div>
-            </li>
-            <li class="list__item item_4">
-            <div class="list__item__text">Item 4</div>
-            <div class="list__item__buttons">
-                <button class="btn--secondary btnUp">Up</button>
-                <button class="btn--primary btnDown">Down</button>
-                <button class="btn--tertiary btnRemove">Remove</button>
-            </div>
-            </li>
-            <li class="list__item item_5">
-            <div class="list__item__text">Item 5</div>
-            <div class="list__item__buttons">
-                <button class="btn--secondary btnUp">Up</button>
-                <button class="btn--primary btnDown">Down</button>
-                <button class="btn--tertiary btnRemove">Remove</button>
-            </div>
-            </li>
-        </ul>
-        <div class="addItemWrapper">
-            <input type="text" class="listInput">
-            <button class="btn--primary btnAdd">Add Item</button>
         </div>
     </div>
-</div>   
  <script src="app.js"></script>
 </body>
 </html>

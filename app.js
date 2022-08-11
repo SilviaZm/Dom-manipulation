@@ -1,148 +1,189 @@
-let list = document.querySelector('.list');
-let listArray = document.querySelectorAll('.list__item');
-let Item_3 = document.querySelector('.item_3');
+let mainBody = document.querySelector('.main__body');
+let inputHero = document.querySelector('.hero__input');
+let btnSubmit = document.querySelector('.btnSubmit');
+let btnEdit = document.querySelector('.btnEdit');
+let btnSort = document.querySelector('.btnSort');
 
-let btnHide = document.querySelector('.btnHide');
-let btnShow = document.querySelector('.btnShow');
-let btnUp = document.querySelector('.btnUp');
-let btnDown = document.querySelector('.btnDown');
-let btnRemove = document.querySelector('.btnRemove');
-let btnAdd = document.querySelector('.btnAdd');
-let listInput = document.querySelector('.listInput');
+let checkboxHide = document.querySelector('.checkboxHide');
 
 
-let btnUpItem_3 = Item_3.querySelector('.btnUp');
-let btnDownItem_3 = Item_3.querySelector('.btnDown');
-let Item_3_Previous = Item_3.previousElementSibling;
-let Item_3_Next = Item_3.nextElementSibling;
 
-let firstButtonUp = document.querySelector('.btnUp');
-firstButtonUp.classList.add('disabled');
+btnSubmit.addEventListener('click', () => {
+    let value = inputHero.value;
 
-let lastButtonDown = listArray[listArray.length-1].querySelector('.btnDown');
-lastButtonDown.classList.add('disabled');
+    createCard(value);
+})
 
-function attachButtons(text){
+function createCard(text){
+    let card = document.createElement('div');
+    card.classList.add('main__card');
 
-    let li = document.createElement('li');
-    li.classList.add('list__item');
+    let cardTitle = document.createElement('h3');
+    cardTitle.classList.add('main__card__title');
+    cardTitle.innerHTML = text;
 
-    let liTextDiv = document.createElement('div');
-    liTextDiv.classList.add('list__item__text');
-    liTextDiv.textContent=text;
+    let cardCheckboxWrapper = document.createElement('div');
 
-    let liButtonsDiv = document.createElement('div');
-    liButtonsDiv.classList.add('list__item__buttons');
+    let cardChechboxLabel = document.createElement('p');
+    cardChechboxLabel.innerHTML = 'Confirmed';
 
-    let liButtonUp = document.createElement('button');
-    liButtonUp.classList.add('btn--secondary','btnUp');
-    liButtonUp.textContent = 'Up';
+    let cardChechbox = document.createElement('input');
+    cardChechbox.type='checkbox';
+    cardChechbox.classList.add('checkboxCard');
 
-    let liButtonDown = document.createElement('button');
-    liButtonDown.classList.add('btn--primary','btnDown');
-    liButtonDown.textContent = 'Down';
+    let cardButtonsWrapper = document.createElement('div');
 
-    let liButtonRemove = document.createElement('button');
-    liButtonRemove.classList.add('btn--tertiary','btnRemove');
-    liButtonRemove.textContent = 'Remove';
+    let cardButtonEdit = document.createElement('button');
+    cardButtonEdit.classList.add('btnEdit', 'button--primary');
+    cardButtonEdit.innerHTML = 'Edit';
 
-    li.appendChild(liTextDiv);
-    li.appendChild(liButtonsDiv);
+    let cardButtonRemove = document.createElement('button');
+    cardButtonRemove.classList.add('btnRemove','button--secondary');
+    cardButtonRemove.innerHTML = 'Remove';
 
-    liButtonsDiv.appendChild(liButtonUp);
-    liButtonsDiv.appendChild(liButtonDown);
-    liButtonsDiv.appendChild(liButtonRemove);
 
-    return li;
+    card.appendChild(cardTitle);
+
+    card.appendChild(cardCheckboxWrapper);
+    cardCheckboxWrapper.appendChild(cardChechboxLabel);
+    cardCheckboxWrapper.appendChild(cardChechbox);
+
+    card.appendChild(cardButtonsWrapper);
+    cardButtonsWrapper.appendChild(cardButtonEdit);
+    cardButtonsWrapper.appendChild(cardButtonRemove);
+
+    mainBody.appendChild(card);
+
+
+    return card;
+
 }
 
-//-----------------------------------------Btn SHOW HIDE
-
-btnHide.addEventListener('click', () => {
-    list.style.display = "none";    
-})
-
-btnShow.addEventListener('click', () => {
-    list.style.display = "block";    
-})
+mainBody.addEventListener('click', (e) => {
 
 
 
-//------------------------------------------BTN ADD ITEM
+    let obj=e.target;
 
-btnAdd.addEventListener('click', () => {
-let value=listInput.value;
+      if(obj.classList.contains("btnEdit")){
 
-let li=attachButtons(value);
+        let card=obj.parentNode.parentNode;
+        let cardTitle = card.querySelector('.main__card__title');
+        let inputTitle = document.createElement('input');
+        inputTitle.classList.add("inputTitle");
 
-list.appendChild(li);
+        
+         inputTitle.value=cardTitle.textContent;
 
-value = '';
- 
-})
+        card.insertBefore(inputTitle, cardTitle);
+        card.removeChild(cardTitle);
 
 
-//---------------------------------------------Manipulate Items
+        obj.classList.remove("btnEdit");
 
-list.addEventListener('click', (event) => {
+        obj.classList.add("btnSave");
 
-    let obj=event.target;
+
+        obj.textContent= 'Save';
+    
+     }else if(obj.classList.contains("btnSave")){
+
+        let card=obj.parentNode.parentNode;
+        let inputTitle = card.querySelector(".inputTitle");
+        let cardTitle = document.createElement('h3');
+        cardTitle.classList.add(".main__card__title");
+
+        card.insertBefore(cardTitle, inputTitle);
+        card.removeChild(inputTitle);
+
+        cardTitle.textContent=inputTitle.value;
+     }
+
+     else if(obj.classList.contains("btnRemove")){
+
+        let main=obj.parentNode.parentNode.parentNode;
+        let card=obj.parentNode.parentNode;
+        
+        main.removeChild(card);
+     }
+});
+
+
+function hideCards(arr){
+
+    for(let i = 0; i<arr.length; i++){
+        let chk=arr[i].querySelector('.checkboxCard');
+        if(chk.checked == false) {
+           arr[i].style.display="none";
+           
+        }
+    }
+}
+
+
+function showCards(arr){
+
+    for(let i = 0; i<arr.length; i++){
+
+        arr[i].style.display="block";
+           
+    }
+}
+
+
+checkboxHide.addEventListener('click', () => {
+  
+    let cardsArr = mainBody.querySelectorAll(".main__card");
+
+
+    cardsArr = Array.from(cardsArr);
    
    
 
-    if(obj.classList.contains('btnUp')) {
+    if(checkboxHide.checked==true){
+
+
+         hideCards(cardsArr);
+    }else{
+
+        showCards(cardsArr);
+    }
+
+});
+
+function sortCards(arr) {
+    let cardsArrSort = mainBody.querySelectorAll(".main__card");
+    console.log(cardsArrSort)
+
+    for(let i=0; i<cardsArrSort.length-1; i++) {
+
+        for(let j=i+1; j<cardsArrSort.length; j++) {
+
+
+            let titleI = cardsArrSort[i].querySelector(".main__card__title");
+            let titleJ = cardsArrSort[j].querySelector(".main__card__title");
+            
+            if(titleJ > titleI) {
+                let aux = titleI;
+                titleI = titleJ;
+                titleJ = aux;
+
+               
+            }
+            
+            mainBody.appendChild(cardsArrSort[i]);
+
+        }
+
         
-        let objList = obj.parentNode.parentNode.parentNode;
-        let objItem = obj.parentNode.parentNode;
-        let objPrevious = obj.parentNode.parentNode.previousElementSibling;
-        let objButtonNext = obj.nextElementSibling;
-
-
-        console.log(objPrevious);
-
-        if(objPrevious != null) {
-            objList.insertBefore(objItem, objPrevious );
-            objButtonNext.classList.remove('disabled');
-        }
-
-        else {
-            obj.classList.add('disabled');
-        }
-
     }
-
-
-
-    if(obj.classList.contains('btnDown')) {
-
-        let objList = obj.parentNode.parentNode.parentNode;
-        let objItem = obj.parentNode.parentNode;
-        let objNext = obj.parentNode.parentNode.nextElementSibling;
-        let objButtonPrev = obj.previousElementSibling;
-        
-        console.log(objNext)
-        if(objNext != null) {
-            objList.insertBefore(objNext, objItem );
-            objButtonPrev.classList.remove('disabled');
-        }
-       
-        else {
-            obj.classList.add('disabled');
-        }
-    }
-
-
-
-
-
-
-    if(obj.classList.contains('btnRemove')) {
-       
-    }
-
-
-
-})
 
     
+    
 
+}
+
+
+btnSort.addEventListener('click', () => {
+    sortCards();
+})
